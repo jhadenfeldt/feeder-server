@@ -1,0 +1,23 @@
+[
+  {
+    "title": "The Verge",
+    "feedUrl": "https://www.theverge.com/rss/index.xml",
+    "hasImage": true
+  },
+  {
+    "title": "CSS Tricks",
+    "feedUrl": "https://css-tricks.com/feed/",
+    "hasImage": true
+  },
+  {
+    "title": "Smashing Magazine",
+    "feedUrl": "https://www.smashingmagazine.com/feed/",
+    "hasImage": true
+  },
+  {
+    "title": "/r/webdev",
+    "feedUrl": "https://old.reddit.com/r/webdev/hot.rss",
+    "hasImage": false,
+    "gradient": ["#3c5f8e", "#1f3657"]
+  }
+]
