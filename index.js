@@ -38,7 +38,9 @@ app.get('/', async function (req, res) {
 					title: feedItem.title,
 					content: feedItem.content,
 					isoDate: feedItem.isoDate,
-					link: feedItem.link
+					link: feedItem.link,
+					pageName: currentFeed.pageName,
+					gradient: currentFeed.gradient
 				}
 			});
 

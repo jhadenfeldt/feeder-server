@@ -1,23 +1,26 @@
 [
   {
-    "title": "The Verge",
+    "pageName": "The Verge",
     "feedUrl": "https://www.theverge.com/rss/index.xml",
-    "hasImage": true
+    "hasImage": true,
+    "gradient": ["#e5127d", "#f68c2f"]
   },
   {
-    "title": "CSS Tricks",
+    "pageName": "CSS Tricks",
     "feedUrl": "https://css-tricks.com/feed/",
-    "hasImage": true
+    "hasImage": false,
+    "gradient": ["#ff8a00", "#da1b60"]
   },
   {
-    "title": "Smashing Magazine",
+    "pageName": "Smashing Magazine",
     "feedUrl": "https://www.smashingmagazine.com/feed/",
-    "hasImage": true
+    "hasImage": false,
+    "gradient": ["#bc3428", "#d33a2c"]
   },
   {
-    "title": "/r/webdev",
+    "pageName": "/r/webdev",
     "feedUrl": "https://old.reddit.com/r/webdev/hot.rss",
     "hasImage": false,
-    "gradient": ["#3c5f8e", "#1f3657"]
+    "gradient": ["#1f3657", "#3c5f8e"]
   }
 ]
