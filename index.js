@@ -28,7 +28,7 @@ app.use(function(req, res, next) {
 	next();
 });
 
-app.get('/', async function (req, res) {
+app.get('/api', async function (req, res) {
 	if (req.headers.host === 'localhost' || req.headers.host === 'feeder.jan-hadenfeldt.de') {
 		const arr = await Promise.all([...feeds.map(async (currentFeed) => {
 			let fullFeedContent = await parser.parseURL(currentFeed.feedUrl);
