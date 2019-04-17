@@ -40,7 +40,8 @@ app.get('/', async function (req, res) {
 					isoDate: feedItem.isoDate,
 					link: feedItem.link,
 					pageName: currentFeed.pageName,
-					gradient: currentFeed.gradient
+					gradient: currentFeed.gradient,
+					hasImage: currentFeed.hasImage
 				}
 			});
 
