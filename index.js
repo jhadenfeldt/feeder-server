@@ -22,6 +22,12 @@ function compare(a, b) {
 	return comparison;
 }
 
+app.use(function(req, res, next) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	next();
+});
+
 app.get('/', async function (req, res) {
 	if (req.headers.host === 'localhost' || req.headers.host === 'feeder.jan-hadenfeldt.de') {
 		const arr = await Promise.all([...feeds.map(async (currentFeed) => {
