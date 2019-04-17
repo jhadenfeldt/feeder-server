@@ -23,30 +23,34 @@ function compare(a, b) {
 }
 
 app.get('/', async function (req, res) {
-	const arr = await Promise.all([...feeds.map(async (currentFeed) => {
-		let fullFeedContent = await parser.parseURL(currentFeed.feedUrl);
+	if (req.headers.host === 'localhost' || req.headers.host === 'feeder.jan-hadenfeldt.de') {
+		const arr = await Promise.all([...feeds.map(async (currentFeed) => {
+			let fullFeedContent = await parser.parseURL(currentFeed.feedUrl);
 
-		let cleanedFeedContent = fullFeedContent.items.map((feedItem) => {
-			return {
-				title: feedItem.title,
-				content: feedItem.content,
-				isoDate: feedItem.isoDate,
-				link: feedItem.link
-			}
-		});
+			let cleanedFeedContent = fullFeedContent.items.map((feedItem) => {
+				return {
+					title: feedItem.title,
+					content: feedItem.content,
+					isoDate: feedItem.isoDate,
+					link: feedItem.link
+				}
+			});
 
-		return cleanedFeedContent;
-	})]);
+			return cleanedFeedContent;
+		})]);
 
-	let returnArray = [];
+		let returnArray = [];
 
-	for (let el of arr) {
-		returnArray.push(...el);
+		for (let el of arr) {
+			returnArray.push(...el);
+		}
+
+		returnArray.sort(compare);
+
+		res.send(returnArray);
+	} else {
+		res.status(403).end();
 	}
-
-	returnArray.sort(compare);
-
-	res.send(returnArray);
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
