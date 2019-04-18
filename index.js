@@ -41,7 +41,8 @@ app.get('/api', async function (req, res) {
 					link: feedItem.link,
 					pageName: currentFeed.pageName,
 					gradient: currentFeed.gradient,
-					hasImage: currentFeed.hasImage
+					hasImage: currentFeed.hasImage,
+					fitImage: currentFeed.fitImage
 				}
 			});
 

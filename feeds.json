@@ -3,24 +3,28 @@
     "pageName": "The Verge",
     "feedUrl": "https://www.theverge.com/rss/index.xml",
     "hasImage": true,
+    "fitImage": true,
     "gradient": ["#e5127d", "#f68c2f"]
   },
   {
-    "pageName": "CSS Tricks",
-    "feedUrl": "https://css-tricks.com/feed/",
-    "hasImage": false,
-    "gradient": ["#ff8a00", "#da1b60"]
+    "pageName": "TNW",
+    "feedUrl": "https://thenextweb.com/feed/",
+    "hasImage": true,
+    "fitImage": true,
+    "gradient": ["#c09", "#f42"]
   },
   {
-    "pageName": "Smashing Magazine",
-    "feedUrl": "https://www.smashingmagazine.com/feed/",
-    "hasImage": false,
-    "gradient": ["#bc3428", "#d33a2c"]
+    "pageName": "xkcd",
+    "feedUrl": "https://xkcd.com/rss.xml",
+    "hasImage": true,
+    "fitImage": false,
+    "gradient": ["#333", "#666"]
   },
   {
-    "pageName": "/r/webdev",
-    "feedUrl": "https://old.reddit.com/r/webdev/hot.rss",
-    "hasImage": false,
-    "gradient": ["#1f3657", "#3c5f8e"]
+    "pageName": "Rainier Watch",
+    "feedUrl": "https://web.stagram.com/rss/n/mtrainierwatch",
+    "hasImage": true,
+    "fitImage": false,
+    "gradient": ["#11889c", "#28bbcc"]
   }
 ]
