@@ -10,7 +10,7 @@ dayjs.extend(relativeTime);
 
 const express = require('express');
 const app = express();
-const port = 80;
+const port = 8000;
 
 let expressWs = require('express-ws')(app);
 let latestFeed = [];
