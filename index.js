@@ -12,6 +12,9 @@ const express = require('express');
 const app = express();
 const port = 80;
 
+let expressWs = require('express-ws')(app);
+let latestFeed = [];
+
 function compare(a, b) {
 	let comparison = 0;
 	if (a.isoDate > b.isoDate) {
@@ -22,45 +25,53 @@ function compare(a, b) {
 	return comparison;
 }
 
-app.use(function(req, res, next) {
+getSingleFeeds();
+setTimeout(() => {
+	getSingleFeeds();
+}, 10000);
+
+app.use(function (req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 	next();
 });
 
-app.get('/api', async function (req, res) {
-	if (req.headers.host === 'localhost' || req.headers.host === 'feeder.jan-hadenfeldt.de') {
-		const arr = await Promise.all([...feeds.map(async (currentFeed) => {
-			let fullFeedContent = await parser.parseURL(currentFeed.feedUrl);
+app.ws('/api', function (ws, req) {
+	ws.send(JSON.stringify(latestFeed));
 
-			let cleanedFeedContent = fullFeedContent.items.map((feedItem) => {
-				return {
-					title: feedItem.title,
-					content: feedItem.content,
-					isoDate: feedItem.isoDate,
-					link: feedItem.link,
-					pageName: currentFeed.pageName,
-					gradient: currentFeed.gradient,
-					hasImage: currentFeed.hasImage,
-					fitImage: currentFeed.fitImage
-				}
-			});
-
-			return cleanedFeedContent;
-		})]);
-
-		let returnArray = [];
-
-		for (let el of arr) {
-			returnArray.push(...el);
-		}
-
-		returnArray.sort(compare);
-
-		res.send(returnArray);
-	} else {
-		res.status(403).end();
-	}
+	setInterval(function() {
+		ws.send(JSON.stringify(latestFeed));
+	}, 2 * 60 * 1000);
 });
+
+async function getSingleFeeds() {
+	const arr = await Promise.all([...feeds.map(async (currentFeed) => {
+		let fullFeedContent = await parser.parseURL(currentFeed.feedUrl);
+
+		let cleanedFeedContent = fullFeedContent.items.map((feedItem) => {
+			return {
+				title: feedItem.title,
+				content: feedItem.content,
+				isoDate: feedItem.isoDate,
+				link: feedItem.link,
+				pageName: currentFeed.pageName,
+				gradient: currentFeed.gradient,
+				hasImage: currentFeed.hasImage,
+				fitImage: currentFeed.fitImage
+			}
+		});
+
+		return cleanedFeedContent;
+	})]);
+
+	let returnArray = [];
+
+	for (let el of arr) {
+		returnArray.push(...el);
+	}
+
+	returnArray.sort(compare);
+	latestFeed = returnArray;
+}
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

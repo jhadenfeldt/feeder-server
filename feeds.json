@@ -19,12 +19,5 @@
     "hasImage": true,
     "fitImage": false,
     "gradient": ["#333", "#666"]
-  },
-  {
-    "pageName": "Rainier Watch",
-    "feedUrl": "https://web.stagram.com/rss/n/mtrainierwatch",
-    "hasImage": true,
-    "fitImage": false,
-    "gradient": ["#11889c", "#28bbcc"]
   }
 ]
